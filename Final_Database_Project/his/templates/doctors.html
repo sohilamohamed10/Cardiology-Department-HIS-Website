@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for doctor in doctors %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + doctor.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <i class="mr-2">{{ doctor.email }}</i><br>
+              <small class="text-muted"><strong>Mobile Number: </strong>{{ doctor.mobile_number }}</small>
+            </div>
+            {% if current_user.role == 'admin' %}
+            <h2><a class="article-title" href="{{ url_for('doctor_patients', username=doctor.username) }}">{{ doctor.username }}</a></h2>
+            {% endif %}
+            {% if current_user.role != 'admin' %}
+            <h2><a class="article-title" href="#">{{ doctor.username }}</a></h2>
+            {% endif %}
+            <p class="article-content"><strong>Gender: </strong>{{ doctor.gender }}</p>
+            <p class="article-content"><strong>Age: </strong>{{ doctor.age }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

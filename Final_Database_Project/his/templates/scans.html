@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>My Scans</h1><br><br>
+    {% for scan in scans %}
+        <div class="media content-section">
+            <div class="media">
+                <img class="squared article-img" src="{{ url_for('static', filename='scans_pics/' + scan.image_file) }}">
+                <div class="media-body">
+                    <small class="text-muted"><a class="article-title" href="{{ url_for('scan', scan_id=scan.id) }}"> Scan of patient {{current_user.username}} </a></small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

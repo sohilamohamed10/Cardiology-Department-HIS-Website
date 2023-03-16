@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1 class="mb-3">Number of Feedbacks: {{ count_messages }}</h1>
+    {% for message in messages %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <i class="mr-2">{{ message.email }}</i>
+              <small class="text-muted">{{ message.mobile_number }}</small>
+            </div>
+            <p class="article-content">{{ message.name }}</p>
+            <h2 class="article-title"><strong>Subject:</strong>{{ message.subject }}</a></h2>
+            <p class="article-content"><strong>Comment:</strong>{{ message.message }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
